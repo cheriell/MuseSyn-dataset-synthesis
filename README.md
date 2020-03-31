@@ -62,5 +62,8 @@ run:
 
     python build_reaper_projects.py <piano>
     python render_flac_files.py <piano>
+
+After synthesize all the piano models, run:
+
     python move_references.py
 
