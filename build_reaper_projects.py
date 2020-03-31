@@ -11,7 +11,7 @@ piano = args.piano
 
 reaper = '"C:\\Program Files\\REAPER (x64)\\reaper.exe"'
 dataset_path = "data\\dataset-temp"
-template_file = 'data\\reaper_templates\\template_{}.rpp'.format(piano)
+template_file = 'reaper_templates\\template_{}.rpp'.format(piano)
 project_path = 'data\\reaper\\{}'.format(piano)
 
 utils.create_path(project_path)

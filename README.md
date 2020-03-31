@@ -56,7 +56,7 @@ For each piano model:
 
 Save preferred FX chain as default.
 
-Create an empty reaper projec with preferred render settings (here I am rendering to `data/flac/{piano}/{project_name}.flac` in flac format, 16 bit depth, mono). Save the template project to `data/reaper_templates/template_{piano}.rpp`.
+Create an empty reaper projec with preferred render settings (here I am rendering to `data/flac/{piano}/{project_name}.flac` in flac format, 16 bit depth, mono). Save the template project to `reaper_templates/template_{piano}.rpp`.
 
 run:
 
