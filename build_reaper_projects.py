@@ -10,7 +10,7 @@ args = parser.parse_args()
 piano = args.piano
 
 reaper = '"C:\\Program Files\\REAPER (x64)\\reaper.exe"'
-data_path = "C:\\Users\\Marco\\Downloads\\dataset-test"
+dataset_path = "data\\dataset-temp"
 template_file = 'data\\reaper_templates\\template_{}.rpp'.format(piano)
 project_path = 'data\\reaper\\{}'.format(piano)
 
@@ -24,11 +24,11 @@ import reapy
 from reapy import reascript_api as RPR
 print("reapy import finished!")
 
-all_midi_files = utils.get_files_by_suffix(data_path, '.mid')
+all_midi_files = utils.get_files_by_suffix(dataset_path, '.mid')
 
 for file in all_midi_files:
     print(file)
-    midi_file = os.path.join(data_path, file)
+    midi_file = os.path.join(dataset_path, file)
     project_file = project_path+'\\'+file[:-4]+'.rpp'
 
     p1 = subprocess.Popen(' '.join(['cp', template_file, project_file]), shell=True)
