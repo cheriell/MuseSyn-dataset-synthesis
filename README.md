@@ -45,9 +45,14 @@ test -> open Reaper, in shell, run
     reapy.print("hello world")
 
 
-
 ## rendering using command line
 
     "C:\Program Files\REAPER (x64)\reaper.exe" -renderproject C:\Users\Marco\Downloads\test.rpp
 
+
+## running instructions
+
+Save preferred FX chain as default.
+
+Create an empty reaper projec with preferred render settings (here I am rendering to `data/flac/{piano}/{project_name}.flac`). Save the template project to `data/reaper_templates/template_{piano}.rpp`.
 

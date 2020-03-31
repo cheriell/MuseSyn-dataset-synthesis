@@ -1,13 +1,15 @@
 import os
 
+def get_files_by_suffix(folder, suffix):
+    files = [item for item in os.listdir(folder) if item[-len(suffix):]==suffix]
+    return files
 
-data_path = "C:\\Users\\Marco\\OneDrive - Queen Mary, University of London\\Datasets\\MuseScore sheet music"
-
-# get all sample piece names
-def get_all_midis():
-    midi_path = os.path.join(data_path, "MIDI")
-    midi_files = os.listdir(midi_path)
-    return [os.path.join(midi_path, item) for item in midi_files]
+def create_path(path):
+    if not os.path.exists(path):
+        try:
+            os.makedirs(path)
+        except:
+            print("create path error")
 
 
 #########################################################
