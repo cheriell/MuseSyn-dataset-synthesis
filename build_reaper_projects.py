@@ -10,7 +10,7 @@ args = parser.parse_args()
 piano = args.piano
 
 reaper = '"C:\\Program Files\\REAPER (x64)\\reaper.exe"'
-dataset_path = "data\\dataset-temp"
+dataset_path = "C:\\Users\\Marco\\Desktop\\dataset-generation\\data\\dataset-temp"
 template_file = 'reaper_templates\\template_{}.rpp'.format(piano)
 project_path = 'data\\reaper\\{}'.format(piano)
 
