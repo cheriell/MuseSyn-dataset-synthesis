@@ -85,7 +85,7 @@ ingredients = ['with pedal', 'without pedal']
 data = pedal_statistics
 
 def func(pct, allvals):
-    absolute = int(pct/100.*np.sum(allvals))
+    absolute = int(round(pct/100.*np.sum(allvals)))
     return "{:.1f}%\n({:d} pieces)".format(pct, absolute)
 
 wedges, texts, autotexts = ax2.pie(data, autopct=lambda pct: func(pct, data))
