@@ -7,6 +7,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import warnings
 warnings.filterwarnings('ignore')
+import matplotlib
+matplotlib.rcParams.update({'font.size': 14})
 
 def copy_all_midis():
     dataset_path = 'C:\\Users\\Marco\\OneDrive - Queen Mary, University of London\\Datasets\\MuseScore sheet music'
@@ -55,7 +57,6 @@ print('pedals:', pedal_statistics)
 print('total notes:', np.sum(total_notes))
 print('total duration:', np.sum(durations)/3600, 'hours')
 
-
 fig, [ax, ax2] = plt.subplots(1, 2, figsize=(10,5))
 
 # subplot 1 - time signature
@@ -63,6 +64,7 @@ labels = ['4/4', '3/4', '6/8', 'other']
 x = np.arange(len(labels))
 width = 0.6
 rects = ax.bar(x, time_signature_statistics, width, color='steelblue')
+ax.set_ylim(0,np.max(time_signature_statistics)+50)
 ax.set_ylabel('music pieces')
 ax.set_title('time signature distribution')
 ax.set_xticks(x)
