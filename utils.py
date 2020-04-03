@@ -46,3 +46,21 @@ def get_total_notes(midi_data):
     for inst in midi_data.instruments:
         n_notes += len(inst.notes)
     return n_notes
+
+
+def compare_rolls(roll, roll_no_pedal):
+    import matplotlib.pyplot as plt
+    fig, [ax1, ax2] = plt.subplots(2, 1, figsize=(15,8))
+    ax1.imshow(roll[:,5000:10000], aspect='auto')
+    ax2.imshow(roll_no_pedal[:,5000:10000], aspect='auto')
+    plt.show()
+
+def get_polyphony_level(midi_data):
+    fs = 100
+    roll = (midi_data.get_piano_roll(fs)>0).astype(int)
+    roll_no_pedal = (midi_data.get_piano_roll(fs, pedal_threshold=None)>0).astype(int)
+    # compare_rolls(roll, roll_no_pedal)
+    poly = np.sum(roll, axis=0)
+    poly_no_pedal = np.sum(roll_no_pedal, axis=0)
+
+    return (np.max(poly), np.max(poly_no_pedal))

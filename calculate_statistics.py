@@ -42,6 +42,8 @@ time_signature_statistics = np.zeros(4, dtype=int)
 pedal_statistics = np.zeros(2, dtype=int)
 total_notes = []
 durations = []
+polyphony_level_max = []
+polyphony_level_no_pedal_max = []
 
 for item in os.listdir(all_midis_folder):
     print(item)
@@ -51,13 +53,18 @@ for item in os.listdir(all_midis_folder):
     pedal_statistics += utils.classify_pedal(midi_data)
     total_notes.append(utils.get_total_notes(midi_data))
     durations.append(midi_data.get_end_time())
+    (poly_max, poly_max_no_pedal) = utils.get_polyphony_level(midi_data)
+    polyphony_level_max.append(poly_max)
+    polyphony_level_no_pedal_max.append(poly_max_no_pedal)
 
 print('time signature:', time_signature_statistics)
 print('pedals:', pedal_statistics)
 print('total notes:', np.sum(total_notes))
 print('total duration:', np.sum(durations)/3600, 'hours')
+print('max poly level among all pieces:', np.max(polyphony_level_max))
+print('max poly level among all pieces no pedal:', np.max(polyphony_level_no_pedal_max))
 
-fig, [ax, ax2] = plt.subplots(1, 2, figsize=(10,5))
+fig, [[ax, ax2], [ax3, ax4]] = plt.subplots(2, 2, figsize=(12,8))
 
 # subplot 1 - time signature
 labels = ['4/4', '3/4', '6/8', 'other']
@@ -94,6 +101,20 @@ wedges, texts, autotexts = ax2.pie(data, autopct=lambda pct: func(pct, data))
 ax2.legend(wedges, ingredients, loc='center left', bbox_to_anchor=(1,0,0.5,1))
 ax2.set_title('use of piano pedal')
 
+# subplot 3 - maximum polyphony level
+ax3.hist(polyphony_level_max, bins=50)
+ax3.set_ylabel('music pieces')
+ax3.set_xlabel('polyphony level')
+ax3.set_title('maximum polyphony level (with pedal)')
+
+# subplot 4 - maximum polyphony level without pedel
+ax4.hist(polyphony_level_no_pedal_max, bins=50)
+ax4.set_ylabel('music pieces')
+ax4.set_xlabel('polyphony level')
+ax4.set_title('maximum polyphony level (without pedal)')
+
 fig.tight_layout()
 plt.show()
 fig.savefig('figures\\statistics.pdf')
+
+
