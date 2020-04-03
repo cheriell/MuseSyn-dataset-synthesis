@@ -73,7 +73,7 @@ width = 0.6
 rects = ax.bar(x, time_signature_statistics, width, color='steelblue')
 ax.set_ylim(0,np.max(time_signature_statistics)+50)
 ax.set_ylabel('music pieces')
-ax.set_title('time signature distribution')
+ax.set_title('(a)\ntime signature distribution')
 ax.set_xticks(x)
 ax.set_xticklabels(labels)
 
@@ -99,19 +99,19 @@ def func(pct, allvals):
 
 wedges, texts, autotexts = ax2.pie(data, autopct=lambda pct: func(pct, data))
 ax2.legend(wedges, ingredients, loc='center left', bbox_to_anchor=(1,0,0.5,1))
-ax2.set_title('use of piano pedal')
+ax2.set_title('(b)\nuse of piano pedal')
 
 # subplot 3 - maximum polyphony level
-ax3.hist(polyphony_level_max, bins=50)
+ax3.hist(polyphony_level_max, bins=54, range=(-0.5, 53.5))
 ax3.set_ylabel('music pieces')
 ax3.set_xlabel('polyphony level')
-ax3.set_title('maximum polyphony level (with pedal)')
+ax3.set_title('(c)\nmaximum polyphony level (with pedal)')
 
 # subplot 4 - maximum polyphony level without pedel
-ax4.hist(polyphony_level_no_pedal_max, bins=50)
+ax4.hist(polyphony_level_no_pedal_max, bins=24, range=(1.5, 13.5))
 ax4.set_ylabel('music pieces')
 ax4.set_xlabel('polyphony level')
-ax4.set_title('maximum polyphony level (without pedal)')
+ax4.set_title('(d)\nmaximum polyphony level (without pedal)')
 
 fig.tight_layout()
 plt.show()
