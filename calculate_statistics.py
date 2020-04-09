@@ -67,8 +67,8 @@ print('total notes:', np.sum(total_notes))
 print('total duration:', np.sum(durations)/3600, 'hours')
 print('max poly level among all pieces:', np.max(polyphony_level_max))
 print('max poly level among all pieces no pedal:', np.max(polyphony_level_no_pedal_max))
-print('ave poly level among all pieces:', polyphony_level_ave)
-print('ave poly level among all pieces no pedal:', polyphony_level_no_pedal_ave)
+print('ave poly level among all pieces:', np.mean(polyphony_level_ave))
+print('ave poly level among all pieces no pedal:', np.mean(polyphony_level_no_pedal_ave))
 
 fig, [[ax, ax2], [ax3, ax4], [ax5, ax6]] = plt.subplots(3, 2, figsize=(12,12))
 
@@ -119,22 +119,17 @@ ax4.set_ylabel('music pieces')
 ax4.set_xlabel('polyphony level')
 ax4.set_title('(d)\nmaximum polyphony level (without pedal)')
 
-fig.tight_layout()
-plt.show()
-fig.savefig('figures\\statistics.pdf')
-
-
 # subplot 5 - average polyphony level
-ax3.hist(polyphony_level_ave)
-ax3.set_ylabel('music pieces')
-ax3.set_xlabel('polyphony level')
-ax3.set_title('(c)\naverage polyphony level (with pedal)')
+ax5.hist(polyphony_level_ave, bins=50)
+ax5.set_ylabel('music pieces')
+ax5.set_xlabel('polyphony level')
+ax5.set_title('(e)\naverage polyphony level (with pedal)')
 
 # subplot 6 - average polyphony level without pedel
-ax4.hist(polyphony_level_no_pedal_ave)
-ax4.set_ylabel('music pieces')
-ax4.set_xlabel('polyphony level')
-ax4.set_title('(d)\naverage polyphony level (without pedal)')
+ax6.hist(polyphony_level_no_pedal_ave, bins=50)
+ax6.set_ylabel('music pieces')
+ax6.set_xlabel('polyphony level')
+ax6.set_title('(f)\naverage polyphony level (without pedal)')
 
 fig.tight_layout()
 plt.show()
