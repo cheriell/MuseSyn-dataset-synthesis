@@ -63,4 +63,4 @@ def get_polyphony_level(midi_data):
     poly = np.sum(roll, axis=0)
     poly_no_pedal = np.sum(roll_no_pedal, axis=0)
 
-    return (np.max(poly), np.max(poly_no_pedal))
+    return (np.max(poly), np.max(poly_no_pedal), np.mean(poly), np.mean(poly_no_pedal))

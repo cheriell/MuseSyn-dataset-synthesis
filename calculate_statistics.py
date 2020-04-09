@@ -44,6 +44,8 @@ total_notes = []
 durations = []
 polyphony_level_max = []
 polyphony_level_no_pedal_max = []
+polyphony_level_ave = []
+polyphony_level_no_pedal_ave = []
 
 for item in os.listdir(all_midis_folder):
     print(item)
@@ -53,9 +55,11 @@ for item in os.listdir(all_midis_folder):
     pedal_statistics += utils.classify_pedal(midi_data)
     total_notes.append(utils.get_total_notes(midi_data))
     durations.append(midi_data.get_end_time())
-    (poly_max, poly_max_no_pedal) = utils.get_polyphony_level(midi_data)
+    (poly_max, poly_max_no_pedal, poly_ave, poly_ave_no_pedal) = utils.get_polyphony_level(midi_data)
     polyphony_level_max.append(poly_max)
     polyphony_level_no_pedal_max.append(poly_max_no_pedal)
+    polyphony_level_ave.append(poly_ave)
+    polyphony_level_no_pedal_ave.append(poly_ave_no_pedal)
 
 print('time signature:', time_signature_statistics)
 print('pedals:', pedal_statistics)
@@ -63,8 +67,10 @@ print('total notes:', np.sum(total_notes))
 print('total duration:', np.sum(durations)/3600, 'hours')
 print('max poly level among all pieces:', np.max(polyphony_level_max))
 print('max poly level among all pieces no pedal:', np.max(polyphony_level_no_pedal_max))
+print('ave poly level among all pieces:', polyphony_level_ave)
+print('ave poly level among all pieces no pedal:', polyphony_level_no_pedal_ave)
 
-fig, [[ax, ax2], [ax3, ax4]] = plt.subplots(2, 2, figsize=(12,8))
+fig, [[ax, ax2], [ax3, ax4], [ax5, ax6]] = plt.subplots(3, 2, figsize=(12,12))
 
 # subplot 1 - time signature
 labels = ['4/4', '3/4', '6/8', 'other']
@@ -118,3 +124,18 @@ plt.show()
 fig.savefig('figures\\statistics.pdf')
 
 
+# subplot 5 - average polyphony level
+ax3.hist(polyphony_level_ave)
+ax3.set_ylabel('music pieces')
+ax3.set_xlabel('polyphony level')
+ax3.set_title('(c)\naverage polyphony level (with pedal)')
+
+# subplot 6 - average polyphony level without pedel
+ax4.hist(polyphony_level_no_pedal_ave)
+ax4.set_ylabel('music pieces')
+ax4.set_xlabel('polyphony level')
+ax4.set_title('(d)\naverage polyphony level (without pedal)')
+
+fig.tight_layout()
+plt.show()
+fig.savefig('figures\\statistics.pdf')
