@@ -23,7 +23,7 @@ for project in utils.get_files_by_suffix(projects_path, '.rpp'):
     print(project)
     project_file = os.path.join(projects_path, project)
     p = subprocess.Popen(' '.join([reaper, '-renderproject', project_file]))
-    time.sleep(12)
+    time.sleep(20)
     processes.append(p)
 
 print('rendering finished!')
