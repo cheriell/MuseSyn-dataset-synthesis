@@ -26,8 +26,8 @@ print("reapy import finished!")
 
 all_midi_files = utils.get_files_by_suffix(dataset_path, '.mid')
 
-for file in all_midi_files:
-    print(file)
+for i, file in enumerate(all_midi_files):
+    print(i, file)
     midi_file = os.path.join(dataset_path, file)
     project_file = project_path+'\\'+file[:-4]+'.rpp'
 
