@@ -1,3 +1,5 @@
+import warnings
+warnings.filterwarnings('ignore')
 import subprocess
 import os
 import time
