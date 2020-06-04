@@ -18,7 +18,7 @@ for item_index, item in enumerate(os.listdir(raw_dataset_path)):
     simple = True
     for ms in [part_right.getElementsByClass(Measure)] + [part_left.getElementsByClass(Measure)]:
         for nt in ms.flat.notesAndRests:
-            if nt.duration.quarterLength % 0.125 != 0:
+            if nt.duration.quarterLength == 0.0 or nt.duration.quarterLength % 0.125 != 0:
                 print(nt, nt.duration.quarterLength)
                 print()
                 simple = False
