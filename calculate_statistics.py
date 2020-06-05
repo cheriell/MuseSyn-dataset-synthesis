@@ -10,32 +10,8 @@ warnings.filterwarnings('ignore')
 import matplotlib
 matplotlib.rcParams.update({'font.size': 14})
 
-def copy_all_midis():
-    dataset_path = 'C:\\Users\\Marco\\OneDrive - Queen Mary, University of London\\Datasets\\MuseScore sheet music'
-    source_folders = ['midi', '002', '003', '004', '005', '006', '007', '008', '009', '010']
-    project_path = 'C:\\Users\\Marco\\Desktop\\dataset-generation'
-    target_folder = 'data\\all_midis_temp'
 
-    utils.create_path(os.path.join(project_path, target_folder))
-
-    subprocesses = []
-
-    for source_folder in source_folders:
-        for file in utils.get_files_by_suffix(os.path.join(dataset_path, source_folder), '.mid'):
-            midi_file = os.path.join(dataset_path, source_folder, file)
-            target_midi_file = os.path.join(project_path, target_folder, file)
-            p = subprocess.Popen(' '.join(['cp', '"'+midi_file+'"', '"'+target_midi_file+'"']))
-            subprocesses.append(p)
-
-    time.sleep(0.5)
-    for p in subprocesses:
-        p.kill()
-
-    return
-
-# copy_all_midis()
-
-all_midis_folder = 'data\\all_midis_temp'
+all_midis_folder = 'data\\dataset-temp'
 utils.create_path('figures')
 
 time_signature_statistics = np.zeros(4, dtype=int)
@@ -79,7 +55,7 @@ width = 0.6
 rects = ax.bar(x, time_signature_statistics, width, color='steelblue')
 ax.set_ylim(0,np.max(time_signature_statistics)+50)
 ax.set_ylabel('music pieces')
-ax.set_title('(a)\ntime signature distribution')
+ax.set_title('(a) time signature distribution')
 ax.set_xticks(x)
 ax.set_xticklabels(labels)
 
@@ -105,31 +81,31 @@ def func(pct, allvals):
 
 wedges, texts, autotexts = ax2.pie(data, autopct=lambda pct: func(pct, data))
 ax2.legend(wedges, ingredients, loc='center left', bbox_to_anchor=(1,0,0.5,1))
-ax2.set_title('(b)\nuse of piano pedal')
+ax2.set_title('(b) use of piano pedal')
 
 # subplot 3 - maximum polyphony level
 ax3.hist(polyphony_level_max, bins=54, range=(-0.5, 53.5))
 ax3.set_ylabel('music pieces')
 ax3.set_xlabel('polyphony level')
-ax3.set_title('(c)\nmaximum polyphony level (with pedal)')
+ax3.set_title('(c) maximum polyphony level (with pedal)')
 
 # subplot 4 - maximum polyphony level without pedel
 ax4.hist(polyphony_level_no_pedal_max, bins=24, range=(1.5, 13.5))
 ax4.set_ylabel('music pieces')
 ax4.set_xlabel('polyphony level')
-ax4.set_title('(d)\nmaximum polyphony level (without pedal)')
+ax4.set_title('(d) maximum polyphony level (without pedal)')
 
 # subplot 5 - average polyphony level
 ax5.hist(polyphony_level_ave, bins=50)
 ax5.set_ylabel('music pieces')
 ax5.set_xlabel('polyphony level')
-ax5.set_title('(e)\naverage polyphony level (with pedal)')
+ax5.set_title('(e) average polyphony level (with pedal)')
 
 # subplot 6 - average polyphony level without pedel
 ax6.hist(polyphony_level_no_pedal_ave, bins=50)
 ax6.set_ylabel('music pieces')
 ax6.set_xlabel('polyphony level')
-ax6.set_title('(f)\naverage polyphony level (without pedal)')
+ax6.set_title('(f) average polyphony level (without pedal)')
 
 fig.tight_layout()
 plt.show()
