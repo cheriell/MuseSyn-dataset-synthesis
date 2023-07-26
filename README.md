@@ -1,4 +1,4 @@
-# dataset-synthesis
+# MuseSyn-dataset-synthesis
 Synthesize large-scale AMT dataset using Reaper and Native Instrument
 
 # collecting musicxml
